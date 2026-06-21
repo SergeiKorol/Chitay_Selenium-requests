@@ -1,0 +1,33 @@
+name: API Tests
+on:
+  workflow_dispatch:
+    inputs:
+      test_path:
+        description: "Путь к тестам"
+        required: false
+        default: "tests/test_api.py"
+        type: string
+jobs:
+  api-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests pytest allure-pytest
+      - name: Run API tests
+        env:
+          CHITAI_API_BASE_URL: https://web-gate.chitai-gorod.ru/api/v3
+          CHITAI_AUTH_BASE_URL: https://web-gate.chitai-gorod.ru/api/v1
+          CHITAI_ANONYMOUS_AUTH_PATH: /auth/anonymous
+          CHITAI_SITE_ORIGIN: https://www.chitai-gorod.ru
+        run: |
+          pytest "${{ github.event.inputs.test_path }}" -v --tb=short
