@@ -4,6 +4,8 @@ from selenium.common import TimeoutException
 
 from pages.mainpage import Mainpage
 
+pytestmark = pytest.mark.ui
+
 
 @pytest.mark.parametrize(
     "search_phrase, expected_author",

@@ -1,7 +1,10 @@
 import allure
+import pytest
 import requests
 
 from config import settings
+
+pytestmark = pytest.mark.api
 
 
 @allure.epic("API Тестирование")
@@ -11,7 +14,7 @@ from config import settings
 @allure.description("Тест проверяет успешный поиск книги по названию")
 @allure.severity(allure.severity_level.CRITICAL)
 def test_api_search(api_auth_headers: dict[str, str]) -> None:
-    book = "запах смерти"
+    book = "Метро"
 
     with allure.step("Подготовка тестовых данных"):
         search_params = {"phrase": book}
