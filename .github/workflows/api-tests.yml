@@ -35,5 +35,6 @@ jobs:
           CHITAI_AUTH_BASE_URL: https://web-gate.chitai-gorod.ru/api/v1
           CHITAI_ANONYMOUS_AUTH_PATH: /auth/anonymous
           CHITAI_SITE_ORIGIN: https://www.chitai-gorod.ru
+          CHITAI_ACCESS_TOKEN: ${{ secrets.CHITAI_ACCESS_TOKEN }}
         run: |
           pytest "${{ github.event.inputs.test_path }}" -v --tb=short

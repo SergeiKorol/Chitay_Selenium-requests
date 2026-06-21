@@ -18,3 +18,4 @@ SITE_ORIGIN: str = os.getenv(
     "CHITAI_SITE_ORIGIN",
     "https://www.chitai-gorod.ru",
 )
+ACCESS_TOKEN: str | None = os.getenv("CHITAI_ACCESS_TOKEN")

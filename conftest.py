@@ -10,5 +10,5 @@ def api_auth_headers() -> dict[str, str]:
 
     Токен запрашивается один раз на всю pytest-сессию.
     """
-    access_token = AuthClient.get_anonymous_access_token()
+    access_token = AuthClient.resolve_access_token()
     return AuthClient.build_authorization_headers(access_token)
